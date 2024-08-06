@@ -1,23 +1,27 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import { NavLink } from 'react-router-dom';
 import { withRouter } from "react-router-dom";
 import ResumePreview from './resumePreview'
 import {skinCodes, fieldCd} from './../../constants/typeCodes';
-// import { connect } from 'react-redux'
-// import * as educationActions from '../../actions/educationActions';
-// import {bindActionCreators} from 'redux';
+
 import { useHistory } from "react-router-dom";
+import { setEcucation, updateEducation } from "../../redux/actions/educationAction";
+import { connect } from "react-redux";
 
 function Education(props) {
-  console.log('Education');
   let history = useHistory();
-  const [education,setEducation]= useState(props.educationSection);
+  const [education,setEducation]= useState(props.education);
 
   const onchange = (event) => {
     var key =event.target.name;
     var val =event.target.value;
     setEducation({...education,[key]:val})
   }
+  useEffect(()=>{
+    if(props.document.id===null){
+        history.push("/getting-started");
+    }
+   })
   const getFieldData=(key)=>{
     if(education && education[key]){
       return education[key]
@@ -25,12 +29,12 @@ function Education(props) {
     return "";
 }
   const onSubmit = async(e) => {
-    //console.log(this.state.educationSection);
-    // if(props.educationSection!=null){
-    //     props.updateEducation(props.document.id,education);
-    // }else{
-    //     props.addEducation(props.document.id,education);
-    // }
+    if(props.education!=null){
+      props.updateEducation(education)
+  }
+  else{
+      props.setEcucation(education);
+  }
      history.push('/finalize')
   }
 
@@ -38,7 +42,7 @@ function Education(props) {
     return (
       <div className="container med education" >
         <div className="section funnel-section">
-          <div className="form-card">
+          <div className="form-card form-card-res">
             <h2 className="form-heading center">Educational Section</h2>
             <div className="form-section">
               <div className="input-group"><label>College Name</label>
@@ -89,18 +93,27 @@ function Education(props) {
               </div>
             </div>
           </div>
-          <div className="preview-card">
-            <ResumePreview contactSection={props.contactSection} educationSection={education} skinCd={props?.document?.skinCd}></ResumePreview>            
+          <div className="preview-card preview-card-res">
+            <ResumePreview contactSection={props.contact} educationSection={education} skinCd={props?.document?.skinCd}></ResumePreview>            
           </div>
         </div>
       </div>
     );
   }
 
+  const mapStateToProps=(state)=>{
+    return{
+        document:state.document,
+        contact:state.contact,
+        education:state.education
+    }
+}
 
-
-  
-
-
-export default Education
+const mapDispatchToProps=(dispatch)=>{
+    return{
+        setEcucation:(contact)=>dispatch(setEcucation(contact)),
+        updateEducation:(contact)=>dispatch(updateEducation(contact))
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Education)
 

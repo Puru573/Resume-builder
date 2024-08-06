@@ -1,7 +1,6 @@
 
 .form-card {
     width: 55%;
-
     box-shadow: 0 2px 9px rgba(186, 186, 186, 0.5);
 }
 .form-section {
@@ -116,4 +115,49 @@ input {
 
 .form-buttons .btn {
     margin: 20px 0px;
+    font-size: 20px;
+    height:7rem;
+}
+.form-card-res{
+    margin-bottom: 15rem;
+}
+
+
+@media only screen and (max-width:459px) {
+    .form-card {
+        width: 100%;
+        box-shadow: 0 2px 9px rgba(186, 186, 186, 0.5);
+    }
+    .form-card-res{
+        width: 100%;
+        box-shadow: 0 2px 9px rgba(186, 186, 186, 0.5);
+        margin-bottom: 13rem;
+    }
+    .form-buttons .btn {
+        margin: 20px 0px;
+        font-size: 20px;
+        height:4rem;
+    }
+    .preview-card-res{
+        width: 40%;
+        background-color: white;
+        box-shadow: 0 2px 9px rgba(186, 186, 186, 0.5);
+        margin-bottom: 13rem;
+    }
+    .no-margin {
+        margin: 0px !important;
+        font-size: 13px;
+    }
+}
+
+@media only screen and (min-width:768px) and (max-width:1024px){
+    .form-card {
+        width: 100%;
+        box-shadow: 0 2px 9px rgba(186, 186, 186, 0.5);
+    }
+    .form-card-res{
+        width: 100%;
+        box-shadow: 0 2px 9px rgba(186, 186, 186, 0.5);
+        margin-bottom: 13rem;
+    }
 }

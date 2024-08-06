@@ -1,83 +1,90 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../../static/images/logo.png";
-
+import { connect } from "react-redux";
+import { isLoaded, isEmpty } from "react-redux-firebase";
+import * as authActions from "../../redux/actions/authActions"
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 function LoggesOut(props) {
   return (
-    <ul>
-      <li className="signup ">
-        <NavLink className=" btnv-1" to="/register">
-        Register
+    <ul className="dataNavin">
+      <li className=" ">
+        <NavLink className=" fs-2 btnv-1"  to="/register">
+          Register
         </NavLink>
       </li>
-      <li className="signin"> 
-        <NavLink className="text-blue btnv-3" to="/login">
-        Sign In
-        </NavLink>         
+      <li className="">
+        <NavLink className=" fs-2 text-blue btnv-3" to="/login">
+          Sign In
+        </NavLink>
       </li>
     </ul>
   )
 }
 
 const Header = (props) => {
-  // const auth = props.auth;
-  const handleLogOut=()=>{
-   console.log('The user will sign out');
+  const auth = props.auth;
+  const handleLogOut = () => {
+    props.signOut();
   }
 
-  return (  
-  <header className="header">
-  <nav className="nav">
-      <a href="/" className="holder-logo">
-        <img className='logo' src={logo}></img>
-      </a> 
-        <div className="header-links full-height">
+  return (
+      <nav className="navbar navbar-expand-lg bg-body-tertiary navbarRes">
+      <div className="container-fluid">
+        <Link className="navbar-brand" to="/">
+          <img className='logo' src={logo}></img>
+        </Link>
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0 optionRes">
 
-        {/* { isLoaded(auth) && !isEmpty(auth) ?<> */}
+            <div className="dataNav">
+              {isLoaded(auth) && !isEmpty(auth) ? <>
 
-          <ul>
-            <li className="signin ">
-              <NavLink className="  " to="/">
-               Logged in as 
-              </NavLink>
-            </li>
-            <li className="signin"> 
-              <button className="text-blue btnv-3" onClick={handleLogOut}>
-             Signout
-              </button>         
-            </li>
+                <li className="nav-item">
+                  <NavLink className="fs-3" to="/">
+                    Logged in as {auth.email}
+                  </NavLink>
+                </li>
+                <li className="">
+                  <button className="text-blue btnv-3 fs-2" onClick={handleLogOut}>
+                    Signout
+                  </button>
+                </li>
+
+              </> : <LoggesOut></LoggesOut>}
+            </div>
+
+            <div className="dataNav">
+              <li className="">
+                <NavLink className="fs-2" to="/resume-templates">
+                  Resume Templates
+                </NavLink>
+              </li>
+              <li className="">
+                <NavLink className=" fs-2 btn-nvt-gm" to="/about-us">
+                  About Us
+                </NavLink>
+              </li>
+            </div>
+
           </ul>
-
-        {/* </>:<LoggesOut></LoggesOut>} */}
-          
-          <ul id="nav-mid">
-            <li>
-            <NavLink className="btn-nvt-gm" to="/resume-templates">
-            Resume Templates
-            </NavLink>
-            </li> 
-            <li className="holder-pricing">            
-              <NavLink className="btn-nvt-gm" to="/about-us">
-              About Us
-              </NavLink>
-            </li>        
-          </ul>
-            
-      </div>   
+        </div>
+      </div>
     </nav>
-  </header>
-
   );
 };
 
-// const mapStateToProps=(state)=>{
-//   return{
-//      auth: state.firebase.auth
-//   }
-// }
-// const mapDispatchToProps= (dispatch)=>{
-//   return {
-//    signOut:()=>dispatch(authActions.signout())
-//   }
-// }
-export default Header;
+const mapStateToProps = (state) => {
+  return {
+    auth: state.firebase.auth
+  }
+}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signOut: () => dispatch(authActions.signout())
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

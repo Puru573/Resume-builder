@@ -5,7 +5,7 @@ const Lp = () => {
     return (    
     
         <div className="container  lp-page center">          
-        <div className="section">
+        <div className="section landingpage">
          <h1>Create a resume that stands out</h1>
            <p >Create a Resume that perfectally describes your skils and match job profile.</p>
             <br></br>

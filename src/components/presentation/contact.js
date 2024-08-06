@@ -7,17 +7,19 @@ import {fieldCd, skinCodes}  from '../../constants/typeCodes';
 // import { withRouter } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import ResumePreview from './resumePreview'
+import { setContact, updateContact } from "../../redux/actions/contactAction";
+import { connect } from "react-redux";
 // import { connect } from "react-redux";
 
 function Contact(props) {
    let history = useHistory();
-   const [contact,setContact]= useState(props.contactSection);
-//    useEffect(() => {
-//        if(!props.document || !props.document.id || !props.document.skinCd)
-//        {
-//            history.push('/getting-started')
-//        }
-//    }, [])
+   const [contact,setContact]= useState(props.contact);
+
+   useEffect(()=>{
+    if(props.document.id===null){
+        history.push("/getting-started");
+    }
+   })
   
  
   const onchange=(event)=>{
@@ -27,12 +29,12 @@ function Contact(props) {
         setContact({...contact,[key]:val})
     }
     const onSubmit= async()=>{
-        // if(props.contactSection!=null){
-        //     props.updateContact(props.document.id,contact);
-        // }
-        // else{
-        //     props.addContact(props.document.id,contact);
-        // }
+        if(props.contact!=null){
+            props.updateContact(contact)
+        }
+        else{
+            props.setContact(contact);
+        }
 
         history.push('/education');
     }
@@ -40,7 +42,7 @@ function Contact(props) {
 
     const getFieldData=(key)=>{
         if(contact && contact[key]){
-          return contact[key]
+          return contact[key] // it returns the val
         }
         return "";
     }
@@ -48,7 +50,7 @@ function Contact(props) {
     return (
           <div className="container med contact">
             <div className="section funnel-section">
-                <div className="form-card">
+                <div className="form-card form-card-res">
                     <h2 className="form-heading center">Personal Details</h2>
                     <div className="form-section">
                         <div className="input-group"><label>First Name</label>
@@ -123,7 +125,7 @@ function Contact(props) {
 
                 </div>
 
-                <div className="preview-card">
+                <div className="preview-card preview-card-res">
                     <ResumePreview contactSection={contact} skinCd={props?.document?.skinCd}></ResumePreview>
                 </div>
 
@@ -132,6 +134,18 @@ function Contact(props) {
     );
 }
 
+const mapStateToProps=(state)=>{
+    return{
+        document:state.document,
+        contact:state.contact
+    }
+}
 
-export default Contact
+const mapDispatchToProps=(dispatch)=>{
+    return{
+        setContact:(contact)=>dispatch(setContact(contact)),
+        updateContact:(contact)=>dispatch(updateContact(contact))
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Contact)
 

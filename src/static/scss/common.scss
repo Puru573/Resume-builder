@@ -80,6 +80,14 @@ body {
 .center {
     text-align: center;
 }
+.landingpage{
+    display: flex;
+    position: relative;
+    margin-left:7rem;
+    flex-direction: column;
+    align-items: center !important;
+    left:1rem;
+}
 
 .left {
     text-align: left;
@@ -393,8 +401,6 @@ h1 span {
 
 .about-page .contact-left-section {
     width: 50%;
-
-
 }
 
 .about-page {
@@ -407,6 +413,33 @@ h1 span {
     }
 }
 
+@media only screen and (max-width:450px) {
+    .about-page .contact-section {
+        display: flex;
+        flex-flow: row;
+        justify-content: space-between;
+    }
+    .dataRes{
+        font-size: 16px;
+    }
+    .dataResemail{
+        font-size: 13.5px;
+        font-weight: bold;
+    }
+    .about-page .contact-left-section {
+        width: 45%;
+    }
+    
+    .about-page {
+        .about-us-img {
+            height: 200px;
+        }
+    
+        .contact-right-section {
+            width: 45%;
+        }
+    }
+}
 
 
 .rounded-border {
@@ -425,6 +458,7 @@ h1 span {
     width: 40%;
     background-color: white;
     box-shadow: 0 2px 9px rgba(186, 186, 186, 0.5);
+    margin-bottom: 15rem;
 }
 
 
@@ -527,7 +561,7 @@ h1 span {
 .heading-underline {
     line-height: 20px !important;
     color: #333;
-    background-image: repeating-linear-gradient(180deg, transparent, transparent 19px, #yellow 20px);
+    background-image: repeating-linear-gradient(180deg, transparent, transparent 19px, yellow 20px);
     font-weight: 600;
     color: #64e5d1;
 }
