@@ -35,7 +35,7 @@
 .input-group .effect {
     position: relative;
     overflow: hidden;
-    border-radius: 4px
+    border-radius: 4px;
 }
 
 .input-group .effect>span {
@@ -87,7 +87,7 @@ input {
     background-color: #f2f5fa;
     padding: 15px 1rem;
     border-radius: 4px;
-    font-size: 1.5rem;
+    font-size: 2.5rem;
     color: #545d69;
     font-weight: 500;
     transition: all .2s ease-in-out;
@@ -147,6 +147,12 @@ input {
     .no-margin {
         margin: 0px !important;
         font-size: 13px;
+    }
+}
+
+@media only screen and (max-width:450px) {
+    .msgRes{
+        font-size: 5rem;
     }
 }
 

@@ -44,7 +44,7 @@ const Header = (props) => {
               {isLoaded(auth) && !isEmpty(auth) ? <>
 
                 <li className="nav-item">
-                  <NavLink className="fs-3" to="/">
+                  <NavLink className="fs-2" to="/">
                     Logged in as {auth.email}
                   </NavLink>
                 </li>

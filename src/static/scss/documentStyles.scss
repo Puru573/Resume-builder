@@ -3,7 +3,7 @@
     padding:3%;
     .contact-name{
         color: cornflowerblue;
-       
+        text-overflow: ellipsis;
         font-size: 3rem;
         font-weight: bold;
         padding: 5px 0px;
@@ -22,7 +22,24 @@
     }
 }
 
+.resume-preview {
+    max-width: 600px;
+    box-sizing: border-box;
+}
+
+.resume-preview p {
+    word-wrap: break-word; /* Break long words */
+}
+
+
+
 .divider{
     width: 100%;
     border-bottom: 1px solid darkcyan;
+}
+
+@media only screen and (max-width:450px){
+    .resume-preview p {
+        font-size: 16px !important;
+    }
 }

@@ -111,7 +111,6 @@
 
 @media only screen and (max-width:450px){
     .navbarRes{
-        max-width: 125vw !important;
         width: 100%;
         position: fixed;
         top:0;
@@ -141,9 +140,7 @@
         margin-left: 4rem;
     }
 }
-
-
-@media only screen and (min-width:768px) and (max-width:1024px){
+@media only screen and (min-width:451px) and (max-width:767px){
     .navbarRes{
         max-width: 126vw;
         width: 100%;
@@ -171,7 +168,41 @@
     .optionRes{
         display: inline-block;  
         position: relative;  
-        width: 50vh;
-        left: 60rem;
+        // width: 100vw;
+        left: auto;
+    }
+}
+
+@media only screen and (min-width:767px) and (max-width:991px){
+    .navbarRes{
+        max-width: 126vw;
+        width: 100%;
+        position: fixed;
+        top:0;
+        z-index: 9999;
+    }
+    .logo {
+        background-size: 59px 50px;
+        height: 50px;
+        width: 70px;
+        padding: 0px 5px;
+    }
+    .dataNav{
+        display: flex;
+        align-items: flex-end;
+        flex-direction: column;
+        margin-top: 2rem;
+        width: 50vw;;
+        left: auto;
+    }
+    .dataNavin{
+        display: flex;
+        align-items: flex-end;
+        flex-direction: column;
+    }
+    .optionRes{
+        display: inline-block;  
+        position: relative;  
+        left:43%;
     }
 }

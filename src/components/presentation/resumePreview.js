@@ -17,8 +17,8 @@ function ResumePreview(props){
 
         return (
             <div className={props.skinCd + " resume-preview "}>
-                <div className={'name-section'}>
-                    <p className={'center contact-name text-upper' }> {rvContact(fieldCd.FirstName,' ')  + rvContact(fieldCd.LastName)}  </p>
+                <div className={'name-section'} style={{textWrap:"wrap"}}>
+                    <p className={'center contact-name text-upper textfinalRes' }> {rvContact(fieldCd.FirstName,' ')  + rvContact(fieldCd.LastName)}  </p>
                     <p className={'center address'}>{rvContact(fieldCd.City,', ') + rvContact(fieldCd.State,', ') +  rvContact(fieldCd.Country,', ') + rvContact(fieldCd.ZipCode,', ')}</p>
                     <p className={'center'}>{rvContact(fieldCd.Email ) }</p>
                     <p className={'center'}>{rvContact(fieldCd.Phone) } </p>
